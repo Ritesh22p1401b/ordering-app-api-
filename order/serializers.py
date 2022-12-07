@@ -20,4 +20,11 @@ class OrderDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=Order
-        fields=['size','order_status','quantity','created_at','updated_at']
+        fields=['id','size','order_status','quantity','created_at','updated_at']
+
+class UpdateOderStatusSeriailizer(serializers.ModelSerializer):
+    order_status=serializers.CharField(default='PENDING')
+
+    class Meta:
+        model=Order
+        fields=['order_status']
