@@ -5,8 +5,11 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
 from .serializers import *
 from .models import *
+from drf_yasg.utils import swagger_auto_schema
+
 
 User=get_user_model()
+
 
 class OrderCreateListView(generics.GenericAPIView):
 
@@ -14,6 +17,7 @@ class OrderCreateListView(generics.GenericAPIView):
     queryset=Order.objects.all()
     permission_classes=[IsAuthenticated]
 
+    @swagger_auto_schema(operation_summary="Get all Orders")
     def get(self,request):
 
         orders=Order.objects.all()

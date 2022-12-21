@@ -1,17 +1,14 @@
 from rest_framework import generics,status
 from rest_framework.response import Response
 from .serializers import UserCreationSerializer
+from drf_yasg.utils import swagger_auto_schema
 
-
-class User_Auth(generics.GenericAPIView):
-    def get(self,request):
-        return Response({"message":"hello user"},status=status.HTTP_200_OK)
-        
 
 class UserCreate(generics.GenericAPIView):
 
     serializer_class=UserCreationSerializer
 
+    @swagger_auto_schema(operation_summary="Create a user account by signing Up")
     def post(self,request):
         
         serializer=self.serializer_class(data=request.data)
